@@ -1,0 +1,103 @@
+{% extends 'catalog/base.html' %}
+{% block title %}{{ title }} — Обувной бутик{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+<div class="col-lg-8">
+    <div class="card shadow-sm">
+        <div class="card-header bg-primary text-white">
+            <h5 class="mb-0"><i class="bi bi-{% if is_edit %}pencil{% else %}plus-lg{% endif %} me-2"></i>{{ title }}</h5>
+        </div>
+        <div class="card-body">
+            <form method="post" enctype="multipart/form-data" novalidate>
+                {% csrf_token %}
+                <div class="row g-3">
+                    <div class="col-md-4">
+                        <label class="form-label">{{ form.article.label }}</label>
+                        {{ form.article }}
+                        {% if is_edit %}<div class="form-text text-muted">Не изменяется</div>{% endif %}
+                        {% if form.article.errors %}<div class="text-danger small">{{ form.article.errors }}</div>{% endif %}
+                    </div>
+                    <div class="col-md-8">
+                        <label class="form-label">{{ form.name.label }}</label>
+                        {{ form.name }}
+                        {% if form.name.errors %}<div class="text-danger small">{{ form.name.errors }}</div>{% endif %}
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-label">{{ form.unit.label }}</label>
+                        {{ form.unit }}
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-label">{{ form.price.label }}</label>
+                        {{ form.price }}
+                        {% if form.price.errors %}<div class="text-danger small">{{ form.price.errors }}</div>{% endif %}
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-label">{{ form.discount.label }}</label>
+                        {{ form.discount }}
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-label">{{ form.stock.label }}</label>
+                        {{ form.stock }}
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label">{{ form.category.label }}</label>
+                        {{ form.category }}
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label">{{ form.manufacturer.label }}</label>
+                        {{ form.manufacturer }}
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label">{{ form.supplier.label }}</label>
+                        {{ form.supplier }}
+                    </div>
+                    <div class="col-12">
+                        <label class="form-label">{{ form.description.label }}</label>
+                        {{ form.description }}
+                    </div>
+                    <div class="col-12">
+                        <label class="form-label">{{ form.image.label }}</label>
+                        <div class="d-flex align-items-start gap-3 flex-wrap">
+                            <div>{{ form.image }}</div>
+                            <div>
+                                {% if product and product.image %}
+                                <img id="imgPreview" src="{{ product.image.url }}" style="max-height:100px;max-width:100px;object-fit:cover;border-radius:6px;">
+                                {% else %}
+                                <img id="imgPreview" src="" style="max-height:100px;max-width:100px;object-fit:cover;border-radius:6px;display:none;">
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="d-flex gap-2 mt-4">
+                    <button type="submit" class="btn btn-primary">
+                        <i class="bi bi-check-lg me-1"></i>{% if is_edit %}Сохранить{% else %}Добавить{% endif %}
+                    </button>
+                    <a href="{% url 'product_list' %}" class="btn btn-outline-secondary">
+                        <i class="bi bi-x-lg me-1"></i>Отмена
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+document.querySelector('input[type="file"]')?.addEventListener('change', function(e) {
+    const file = e.target.files[0];
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = ev => {
+            const p = document.getElementById('imgPreview');
+            p.src = ev.target.result;
+            p.style.display = 'block';
+        };
+        reader.readAsDataURL(file);
+    }
+});
+</script>
+{% endblock %}

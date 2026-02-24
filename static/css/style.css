@@ -1,0 +1,85 @@
+body {
+    font-family: 'Times New Roman', Times, serif;
+    background-color: #f4f6f9;
+}
+
+.navbar-brand {
+    font-size: 1.4rem;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+}
+
+.table th {
+    background-color: #1B4F72;
+    color: #ffffff;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.table td, .table th {
+    vertical-align: middle;
+}
+
+.row-sale {
+    background-color: #ffeeba !important;
+}
+
+.table-info {
+    background-color: #d1ecf1 !important;
+}
+
+.btn-primary {
+    background-color: #1B4F72;
+    border-color: #1B4F72;
+}
+
+.btn-primary:hover {
+    background-color: #154360;
+    border-color: #154360;
+}
+
+.card-header.bg-primary {
+    background-color: #1B4F72 !important;
+}
+
+.badge.bg-primary {
+    background-color: #1B4F72 !important;
+}
+
+.login-card {
+    max-width: 420px;
+    margin: 80px auto;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(27, 79, 114, 0.2);
+}
+
+.login-card .card-header {
+    background-color: #1B4F72;
+    color: white;
+    border-radius: 10px 10px 0 0;
+    padding: 20px;
+    text-align: center;
+    font-size: 1.3rem;
+}
+
+.search-box {
+    max-width: 320px;
+}
+
+.page-link {
+    color: #1B4F72;
+}
+
+.page-item.active .page-link {
+    background-color: #1B4F72;
+    border-color: #1B4F72;
+}
+
+.form-label {
+    font-weight: 600;
+    color: #1B4F72;
+}
+
+h2 {
+    color: #1B4F72;
+}
